@@ -1,5 +1,5 @@
 {
-  "name": "ianstormtaylor-css",
+  "name": "code42day-css",
   "version": "0.3.0",
   "description": "Simple CSS manipulation.",
   "scripts": {
@@ -19,6 +19,9 @@
     "component-type": "^1.1.0",
     "computed-style-component": "^0.1.0",
     "to-camel-case": "^0.2.1"
+  },
+  "devDependencies": {
+    "assert": "jkroso/assert"
   },
   "browser": {
     "type": "component-type",

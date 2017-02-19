@@ -1,5 +1,5 @@
 {
-  "name": "code42day-css",
+  "name": "@pirxpilot/css",
   "version": "0.3.1",
   "description": "Simple CSS manipulation.",
   "scripts": {
@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ianstormtaylor/css.git"
+    "url": "https://github.com/pirxpilot/css.git"
   },
   "keywords": [
     "browser",
@@ -28,8 +28,5 @@
     "computed-style": "computed-style-component"
   },
   "author": "Ian Storm Taylor",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ianstormtaylor/css/issues"
-  }
+  "license": "MIT"
 }

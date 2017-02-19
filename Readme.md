@@ -4,7 +4,7 @@
 
 ## Installation
 
-    $ component install ianstormtaylor/css
+    $ npm install @pirxpilot/css
 
 ## Example
 

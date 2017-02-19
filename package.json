@@ -1,6 +1,6 @@
 {
   "name": "@pirxpilot/css",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Simple CSS manipulation.",
   "scripts": {
     "test": "make check"

@@ -1,4 +1,8 @@
 
+0.3.2 / 2017-02-18
+-------------------------
+* change name to @pirxpilot/css
+
 0.3.1 - 2015-09-17
 -------------------------
 * fix tests when using browserify

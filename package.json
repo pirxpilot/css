@@ -24,10 +24,6 @@
     "assert": "jkroso/assert",
     "browserify": "^16.3.0"
   },
-  "browser": {
-    "type": "component-type",
-    "computed-style": "computed-style-component"
-  },
   "author": "Ian Storm Taylor",
   "license": "MIT",
   "files": [

@@ -1,8 +1,6 @@
-
-var camel = require('to-camel-case')
-  , computed = require('computed-style')
-  , type = require('type');
-
+const camel = require('to-camel-case');
+const computed = require('computed-style-component');
+const type = require('component-type');
 
 /**
  * Expose `css`.
@@ -14,7 +12,7 @@ module.exports = css;
  * Don't append `px`.
  */
 
-var ignore = {
+const ignore = {
   columnCount: true,
   fillOpacity: true,
   fontWeight: true,
@@ -35,16 +33,16 @@ var ignore = {
  */
 
 function css (el, prop, value) {
-  if (1 == arguments.length) return wrapped(el);
+  if (1 === arguments.length) return wrapped(el);
 
-  if (type(prop) == 'object') {
-    for (var key in prop) set(el, key, prop[key]);
+  if (type(prop) === 'object') {
+    Object.keys(prop).forEach(key => set(el, key, prop[key]));
     return;
   }
 
-  return arguments.length == 3
-    ? set(el, prop, value)
-    : get(el, prop);
+  return arguments.length === 3 ?
+    set(el, prop, value) :
+    get(el, prop);
 }
 
 /**
@@ -54,9 +52,8 @@ function css (el, prop, value) {
  */
 
 function wrapped (el) {
-  return function(){
-    var args = [].slice.call(arguments);
-    return css.apply(null, [el].concat(args));
+  return function(...args){
+    return css(el, ...args);
   };
 }
 
@@ -83,6 +80,6 @@ function get (el, prop) {
 
 function set (el, prop, value) {
   prop = camel(prop);
-  if ('number' == typeof value && !ignore[prop]) value += 'px';
+  if ('number' === typeof value && !ignore[prop]) value += 'px';
   el.style[prop] = value;
 }

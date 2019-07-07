@@ -21,7 +21,8 @@
     "to-camel-case": "^0.2.1"
   },
   "devDependencies": {
-    "assert": "jkroso/assert"
+    "assert": "jkroso/assert",
+    "browserify": "^16.3.0"
   },
   "browser": {
     "type": "component-type",

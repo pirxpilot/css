@@ -28,5 +28,8 @@
     "computed-style": "computed-style-component"
   },
   "author": "Ian Storm Taylor",
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ]
 }

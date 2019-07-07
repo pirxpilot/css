@@ -21,12 +21,12 @@
     "to-camel-case": "^0.2.1"
   },
   "devDependencies": {
-    "assert": "jkroso/assert"
-  },
-  "browser": {
-    "type": "component-type",
-    "computed-style": "computed-style-component"
+    "assert": "jkroso/assert",
+    "browserify": "^16.3.0"
   },
   "author": "Ian Storm Taylor",
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ]
 }

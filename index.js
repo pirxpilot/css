@@ -32,16 +32,18 @@ const ignore = {
  */
 
 function css(...args) {
-  if (1 === args.length) return wrapped(args[0]);
-
-  const [el, prop, value] = args;
-
-  if (type(prop) === 'object') {
-    Object.keys(prop).forEach(key => set(el, key, prop[key]));
-    return;
+  switch (args.length) {
+    case 1:
+      return wrapped(args[0]);
+    case 2: {
+      if ('object' !== type(args[1])) return get(...args);
+      const [el, prop] = args;
+      Object.entries(prop).forEach(([key, value]) => set(el, key, value));
+      return;
+    }
+    case 3:
+      return set(...args);
   }
-
-  return args.length === 3 ? set(el, prop, value) : get(el, prop);
 }
 
 /**
@@ -51,9 +53,7 @@ function css(...args) {
  */
 
 function wrapped(el) {
-  return function (...args) {
-    return css(el, ...args);
-  };
+  return (...args) => css(el, ...args);
 }
 
 /**

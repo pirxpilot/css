@@ -2,6 +2,8 @@
   "name": "@pirxpilot/css",
   "version": "1.0.0",
   "description": "Simple CSS manipulation.",
+  "type": "module",
+  "exports": "./index.js",
   "scripts": {
     "test": "make check"
   },

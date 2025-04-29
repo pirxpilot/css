@@ -1,5 +1,5 @@
-const test = require('node:test');
-const css = require('..');
+import test from 'node:test';
+import css from '../index.js';
 
 test('css', async t => {
   let div;

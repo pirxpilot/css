@@ -1,11 +1,11 @@
-const camel = require('to-camel-case');
-const type = require('component-type');
+import type from 'component-type';
+import camel from 'to-camel-case';
 
 /**
  * Expose `css`.
  */
 
-module.exports = css;
+export default css;
 
 /**
  * Don't append `px`.

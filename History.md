@@ -1,4 +1,11 @@
 
+2.0.0 / 2025-04-29
+==================
+
+ * transistion to ESM format
+ * remove `get-computed-style` dependency
+ * use JSDOM to run tests
+
 1.0.0 / 2019-07-06
 ==================
 

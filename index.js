@@ -1,12 +1,11 @@
-const camel = require('to-camel-case');
-const computed = require('computed-style-component');
-const type = require('component-type');
+import type from 'component-type';
+import camel from 'to-camel-case';
 
 /**
  * Expose `css`.
  */
 
-module.exports = css;
+export default css;
 
 /**
  * Don't append `px`.
@@ -32,17 +31,19 @@ const ignore = {
  * @param {String} value (optional)
  */
 
-function css (el, prop, value) {
-  if (1 === arguments.length) return wrapped(el);
-
-  if (type(prop) === 'object') {
-    Object.keys(prop).forEach(key => set(el, key, prop[key]));
-    return;
+function css(...args) {
+  switch (args.length) {
+    case 1:
+      return wrapped(args[0]);
+    case 2: {
+      if ('object' !== type(args[1])) return get(...args);
+      const [el, prop] = args;
+      Object.entries(prop).forEach(([key, value]) => set(el, key, value));
+      return;
+    }
+    case 3:
+      return set(...args);
   }
-
-  return arguments.length === 3 ?
-    set(el, prop, value) :
-    get(el, prop);
 }
 
 /**
@@ -51,12 +52,9 @@ function css (el, prop, value) {
  * @param {Element} el
  */
 
-function wrapped (el) {
-  return function(...args){
-    return css(el, ...args);
-  };
+function wrapped(el) {
+  return (...args) => css(el, ...args);
 }
-
 
 /**
  * Get the current CSS `prop` value of an `el`.
@@ -65,10 +63,9 @@ function wrapped (el) {
  * @param {String} prop
  */
 
-function get (el, prop) {
-  return computed(el)[prop];
+function get(el, prop) {
+  return getComputedStyle(el)[prop];
 }
-
 
 /**
  * Set a CSS `prop` to `value` on an `element`.
@@ -78,7 +75,7 @@ function get (el, prop) {
  * @param {String} value
  */
 
-function set (el, prop, value) {
+function set(el, prop, value) {
   prop = camel(prop);
   if ('number' === typeof value && !ignore[prop]) value += 'px';
   el.style[prop] = value;

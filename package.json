@@ -2,12 +2,14 @@
   "name": "@pirxpilot/css",
   "version": "1.0.0",
   "description": "Simple CSS manipulation.",
+  "type": "module",
+  "exports": "./index.js",
   "scripts": {
     "test": "make check"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pirxpilot/css.git"
+    "url": "git+https://github.com/pirxpilot/css.git"
   },
   "keywords": [
     "browser",
@@ -16,17 +18,17 @@
     "computed"
   ],
   "dependencies": {
-    "component-type": "^1.1.0",
-    "computed-style-component": "^0.1.0",
-    "to-camel-case": "^0.2.1"
-  },
-  "devDependencies": {
-    "assert": "jkroso/assert",
-    "browserify": "^16.3.0"
+    "component-type": "~2",
+    "to-camel-case": "~1"
   },
   "author": "Ian Storm Taylor",
   "license": "MIT",
   "files": [
     "index.js"
-  ]
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "jsdom": "~26",
+    "jsdom-global": "~3"
+  }
 }

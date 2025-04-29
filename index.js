@@ -1,5 +1,4 @@
 const camel = require('to-camel-case');
-const computed = require('computed-style-component');
 const type = require('component-type');
 
 /**
@@ -65,7 +64,7 @@ function wrapped(el) {
  */
 
 function get(el, prop) {
-  return computed(el)[prop];
+  return getComputedStyle(el)[prop];
 }
 
 /**

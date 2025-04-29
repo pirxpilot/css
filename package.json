@@ -17,7 +17,6 @@
   ],
   "dependencies": {
     "component-type": "~2",
-    "computed-style-component": "^0.1.0",
     "to-camel-case": "~1"
   },
   "author": "Ian Storm Taylor",

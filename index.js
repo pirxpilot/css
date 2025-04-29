@@ -32,17 +32,17 @@ const ignore = {
  * @param {String} value (optional)
  */
 
-function css (el, prop, value) {
-  if (1 === arguments.length) return wrapped(el);
+function css(...args) {
+  if (1 === args.length) return wrapped(args[0]);
+
+  const [el, prop, value] = args;
 
   if (type(prop) === 'object') {
     Object.keys(prop).forEach(key => set(el, key, prop[key]));
     return;
   }
 
-  return arguments.length === 3 ?
-    set(el, prop, value) :
-    get(el, prop);
+  return args.length === 3 ? set(el, prop, value) : get(el, prop);
 }
 
 /**
@@ -51,12 +51,11 @@ function css (el, prop, value) {
  * @param {Element} el
  */
 
-function wrapped (el) {
-  return function(...args){
+function wrapped(el) {
+  return function (...args) {
     return css(el, ...args);
   };
 }
-
 
 /**
  * Get the current CSS `prop` value of an `el`.
@@ -65,10 +64,9 @@ function wrapped (el) {
  * @param {String} prop
  */
 
-function get (el, prop) {
+function get(el, prop) {
   return computed(el)[prop];
 }
-
 
 /**
  * Set a CSS `prop` to `value` on an `element`.
@@ -78,7 +76,7 @@ function get (el, prop) {
  * @param {String} value
  */
 
-function set (el, prop, value) {
+function set(el, prop, value) {
   prop = camel(prop);
   if ('number' === typeof value && !ignore[prop]) value += 'px';
   el.style[prop] = value;

@@ -1,74 +1,71 @@
-describe('css', function () {
+const test = require('node:test');
+const css = require('..');
 
-  var assert = require('assert');
-  var css = require('css');
+test('css', async t => {
+  let div;
 
-  beforeEach(function () {
-    this.div = document.createElement('div');
-    document.body.appendChild(this.div);
+  t.beforeEach(function () {
+    div = document.createElement('div');
+    document.body.appendChild(div);
   });
 
-  afterEach(function () {
-    this.div.parentNode.removeChild(this.div);
+  t.afterEach(() => div.remove());
+
+  await t.test("should get a property's value", function () {
+    div.style.fontSize = '12px';
+    t.assert.equal(css(div, 'fontSize'), '12px');
   });
 
-  it('should get a property\'s value', function () {
-    this.div.style.fontSize = '12px';
-    assert('12px' == css(this.div, 'fontSize'));
+  await t.test("should set a property's value", t => {
+    css(div, 'fontSize', '16px');
+    t.assert.equal(css(div, 'fontSize'), '16px');
   });
 
-  it('should set a property\'s value', function () {
-    css(this.div, 'fontSize', '16px');
-    assert('16px' == css(this.div, 'fontSize'));
-  });
-
-  it('should set multiple properties at once', function () {
-    css(this.div, {
+  await t.test('should set multiple properties at once', function () {
+    css(div, {
       position: 'fixed',
       lineHeight: '10px'
     });
-    assert('fixed' == css(this.div, 'position'));
-    assert('10px' == css(this.div, 'lineHeight'));
+    t.assert.equal(css(div, 'position'), 'fixed');
+    t.assert.equal(css(div, 'lineHeight'), '10px');
   });
 
-  it('should work with dashed case', function(){
-    css(this.div, 'font-size', '16px');
-    assert('16px' == css(this.div, 'font-size'));
+  await t.test('should work with dashed case', t => {
+    css(div, 'font-size', '16px');
+    t.assert.equal(css(div, 'font-size'), '16px');
   });
 
-  it('should append `px` when needed', function(){
-    var obj = { style: {} };
+  await t.test('should append `px` when needed', t => {
+    const obj = { style: {} };
     css(obj, 'font-size', 16);
-    assert('16px' == obj.style.fontSize);
+    t.assert.equal(obj.style.fontSize, '16px');
   });
 
-  it('should not append `px` when not needed', function(){
-    var obj = { style: {} };
+  await t.test('should not append `px` when not needed', t => {
+    const obj = { style: {} };
     css(obj, 'opacity', 1);
-    assert(1 == obj.style.opacity);
+    t.assert.equal(1, obj.style.opacity);
   });
 
-  describe('wrapped', function(){
-    var div;
+  await t.test('wrapped', async t => {
+    let wrapped;
 
-    beforeEach(function(){
-      div = css(this.div);
-    })
+    t.beforeEach(() => (wrapped = css(div)));
 
-    it('should get a property\'s value', function(){
-      this.div.style.fontSize = '12px';
-      assert('12px' == div('fontSize'));
-    })
+    await t.test("should get a property's value", t => {
+      div.style.fontSize = '12px';
+      t.assert.equal(wrapped('fontSize'), '12px');
+    });
 
-    it('should set multiple properties at once', function(){
-      div({ height: 100, width: 100 });
-      assert('100px' == this.div.style.width);
-      assert('100px' == this.div.style.height);
-    })
+    await t.test('should set multiple properties at once', t => {
+      wrapped({ height: 100, width: 100 });
+      t.assert.equal(div.style.width, '100px');
+      t.assert.equal(div.style.height, '100px');
+    });
 
-    it('should set a single property', function(){
-      div('height', 100);
-      assert('100px' == this.div.style.height);
-    })
-  })
+    await t.test('should set a single property', t => {
+      wrapped('height', 100);
+      t.assert.equal(div.style.height, '100px');
+    });
+  });
 });

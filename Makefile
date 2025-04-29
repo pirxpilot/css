@@ -1,15 +1,15 @@
+check: lint test
 
-build: node_modules index.js
-	mkdir -p build
-	./node_modules/.bin/browserify --require assert --require ./index.js:css --outfile build/build.js
+lint:
+	./node_modules/.bin/biome ci
 
-clean:
-	rm -fr build node_modules
+format:
+	./node_modules/.bin/biome check --fix
 
-test: build
-	open test/index.html
+test:
+	node --require jsdom-global/register --test $(TEST_OPTS)
 
-node_modules: package.json
-	yarn && touch node_modules
+test-cov: TEST_OPTS := --experimental-test-coverage
+test-cov: test
 
-.PHONY: clean test build
+.PHONY: check format lint test test-cov

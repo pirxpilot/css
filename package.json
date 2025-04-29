@@ -20,13 +20,14 @@
     "computed-style-component": "^0.1.0",
     "to-camel-case": "^0.2.1"
   },
-  "devDependencies": {
-    "assert": "jkroso/assert",
-    "browserify": "^16.3.0"
-  },
   "author": "Ian Storm Taylor",
   "license": "MIT",
   "files": [
     "index.js"
-  ]
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "jsdom": "~26",
+    "jsdom-global": "~3"
+  }
 }
